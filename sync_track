@@ -1,0 +1,17 @@
+<sync rows="1024">
+	<tracks>
+		<track name="cube_scale">
+			<key interpolation="1" value="0.001" row="0"/>
+			<key interpolation="3" value="1" row="56"/>
+			<key interpolation="0" value="2" row="58"/>
+			<key interpolation="3" value="1" row="60"/>
+			<key interpolation="3" value="2" row="62"/>
+			<key interpolation="0" value="10" row="87"/>
+		</track>
+		<track name="clear_r"/>
+		<track name="camera:distance">
+			<key interpolation="1" value="24" row="0"/>
+		</track>
+	</tracks>
+	<bookmarks/>
+</sync>
