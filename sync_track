@@ -8,7 +8,7 @@
 			<key interpolation="3" value="2" row="62"/>
 			<key interpolation="0" value="10" row="87"/>
 		</track>
-		<track name="clear_r"/>
+		<track name="clear_i"/>
 		<track name="camera:distance">
 			<key interpolation="1" value="24" row="0"/>
 		</track>

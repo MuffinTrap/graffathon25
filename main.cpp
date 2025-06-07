@@ -9,7 +9,6 @@ void init()
     glViewport(0, 0, mgdl_GetScreenWidth(), mgdl_GetScreenHeight());
     mgdl_InitOrthoProjection();
 
-    glClearColor(0.4f, 0.4f, 0.39f, 1.0f);
 
     demo.Init();
 
@@ -17,7 +16,6 @@ void init()
 // Rendering callback. glFlush etc.. is done automatically after it
 void render()
 {
-    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
     demo.Draw();
 }
 

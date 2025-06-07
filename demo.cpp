@@ -8,13 +8,23 @@
     #include MGDL_ROCKET_FILE_H
     //#include MGDL_ROCKET_FILE_CPP
 #else
+    static ROCKET_TRACK clear_i;
     static ROCKET_TRACK cube_scale;
     static ROCKET_TRACK camera_distance;
+
+
+    static ROCKET_TRACK logo_pentaBorder;
+    static ROCKET_TRACK logo_pentaRadius;
+    static ROCKET_TRACK logo_pentaScale;
+    static ROCKET_TRACK logo_pentaIntensity;
+    static ROCKET_TRACK logo_pentaSharpness;
+
 #endif
 
 #endif
 
     static Color4f pink;
+
 
 void Demo::Init()
 {
@@ -25,8 +35,7 @@ void Demo::Init()
 
     debugFont = Font_GetDebugFont();
 
-    RGBA8Floats p = gdl::ColorToFloats(Palette_GetColor(Palette_GetDefault(), 1));
-    pink = {p.red, p.green, p.blue, p.alpha};
+    pink = ColorToFloats(Palette_GetColor(Palette_GetDefault(), 1));
 
 
 
@@ -40,9 +49,18 @@ void Demo::Init()
 #ifndef SYNC_PLAYER
     cube_scale = Rocket_AddTrack("cube_scale");
     camera_distance = Rocket_AddTrack("camera:distance");
+    clear_i = Rocket_AddTrack("clear_i");
+
+    logo_pentaBorder = Rocket_AddTrack("logo:pentaBorder");
+    logo_pentaRadius = Rocket_AddTrack("logo:pentaRadius");
+    logo_pentaScale = Rocket_AddTrack("logo:pentaScale");
+    logo_pentaIntensity = Rocket_AddTrack("logo:pentaIntensity");
+    logo_pentaSharpness = Rocket_AddTrack("logo:pentaSharpness");
 #endif
     Rocket_StartSync();
 #endif
+
+    activeScene = LOGO;
 
 }
 
@@ -62,9 +80,26 @@ void Demo::Update()
 
 void Demo::Draw()
 {
+    switch(activeScene)
+    {
+        case LOGO:
+            LogoScene();
+
+            break;
+        case CUBEMIST:
+
+            break;
+
+        case MENU:
+
+            break;
+    }
+
     mgdl_InitOrthoProjection();
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
+
+    glClearColor(0.4f, 0.4f, 0.39f, 1.0f);
 
     Font_Printf(debugFont, Colors::White, 10, 16, 16, "Cube scale %.2f", Rocket_Float(cube_scale));
     //Font_Print(debugFont, Colors::White, 10, 16, 16, "Cube scale");
@@ -116,6 +151,36 @@ void Demo::DrawCube()
 
     glPopMatrix();
     glDisable(GL_DEPTH_TEST);
+}
+
+void Demo::LogoScene()
+{
+    float bgInt= Rocket_Float(clear_i);
+    glClearColor(bgInt, bgInt, bgInt, 1.0f);
+    mgdl_glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+
+    float pi = Rocket_Float(logo_pentaIntensity);
+    float ps = Rocket_Float(logo_pentaScale);
+
+    Palette* defP = Palette_GetDefault();
+    Color4f pc = Palette_GetColor4f(defP, 4);
+
+
+    glPushMatrix();
+    glScalef(ps, ps, 1.0f);
+    glColor3f(pc.red * pi, pc. green * pi, pc.blue * pi);
+
+    // Draw star borders
+    Mesh_DrawStarBorder(Rocket_Float(logo_pentaBorder),
+                        Rocket_Float(logo_pentaRadius),
+                        Rocket_Float(logo_pentaSharpness),
+                        5);
+
+    glPopMatrix();
+
+    // Draw Cat logo
+
+    // Draw text FCCCF
 }
 
 

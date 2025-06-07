@@ -1,6 +1,12 @@
 #pragma once
 
 #include <mgdl.h>
+enum SceneName
+{
+    LOGO = 0,
+    CUBEMIST = 1,
+    MENU = 2
+};
 
 class Demo
 {
@@ -15,5 +21,11 @@ public:
     Mesh* icosaMesh;
     Scene* icosaScene;
     Font* debugFont;
+
+
+    SceneName activeScene;
+
+    // Scenes
+    void LogoScene();
 
 };
