@@ -18,5 +18,8 @@ extern sync_track* logo_pentaAmount;
 extern sync_track* logo_nekoScale;
 extern sync_track* logo_nekoY;
 extern sync_track* logo_nekoColor;
+extern sync_track* logo_textY;
+extern sync_track* logo_textColor;
+extern sync_track* logo_textSize;
 #endif
  // SYNC_PLAYER

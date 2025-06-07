@@ -27,6 +27,10 @@
     static ROCKET_TRACK logo_nekoScale;
     static ROCKET_TRACK logo_nekoY;
     static ROCKET_TRACK logo_nekoColor;
+
+    static ROCKET_TRACK logo_textY;
+    static ROCKET_TRACK logo_textColor;
+    static ROCKET_TRACK logo_textSize;
 #endif
 
 #endif
@@ -86,6 +90,9 @@ void Demo::Init()
     logo_nekoScale = Rocket_AddTrack("logo:nekoScale");
     logo_nekoY = Rocket_AddTrack("logo:nekoY");
     logo_nekoColor = Rocket_AddTrack("logo:nekoColor");
+    logo_textY = Rocket_AddTrack("logo:textY");
+    logo_textColor = Rocket_AddTrack("logo:textColor");
+    logo_textSize = Rocket_AddTrack("logo:textSize");
 #endif
     Rocket_StartSync();
 #endif
@@ -191,7 +198,7 @@ void Demo::LogoScene()
     float radius = Rocket_Float(logo_pentaRadius);
     float sharp = Rocket_Float(logo_pentaSharpness);
 
-    static u8 colors[] = {12, 8, 1, 2};
+    static u8 colors[] = {2, 1, 8, 12};
 
     glPushMatrix();
     glTranslatef(mgdl_GetScreenWidth()/2, mgdl_GetScreenHeight()/2, 0.0f);
@@ -227,6 +234,13 @@ void Demo::LogoScene()
 
     mgdl_glSetTransparency(false);
     // Draw text FCCCF
+
+    u32 textColor = Palette_GetColor(islandJoyPal, Rocket_Int(logo_textColor));
+    Font_PrintAligned(debugFont, textColor,
+                      mgdl_GetScreenWidth()/2,
+                      Rocket_Int(logo_textY),
+                      Rocket_Int(logo_textSize),
+                      Centered, Centered, "FCCCF");
 }
 
 

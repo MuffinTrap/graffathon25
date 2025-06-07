@@ -2,54 +2,92 @@
 	<tracks>
 		<track name="cube_scale">
 			<key interpolation="1" value="0.001" row="0"/>
-			<key interpolation="3" value="1" row="56"/>
-			<key interpolation="0" value="2" row="58"/>
-			<key interpolation="3" value="1" row="60"/>
-			<key interpolation="3" value="2" row="62"/>
 			<key interpolation="0" value="10" row="87"/>
 		</track>
 		<track name="clear_i">
-			<key interpolation="0" value="0.60000002" row="0"/>
+			<key interpolation="2" value="1.0000005" row="0"/>
+			<key interpolation="2" value="1" row="56"/>
+			<key interpolation="0" value="0.050000001" row="112"/>
 		</track>
 		<track name="scene"/>
 		<track name="camera:distance">
 			<key interpolation="1" value="24" row="0"/>
 		</track>
 		<track name="logo:pentaBorder">
-			<key interpolation="0" value="0.19999993" row="0"/>
+			<key interpolation="1" value="0" row="0"/>
+			<key interpolation="0" value="10" row="32"/>
+			<key interpolation="2" value="10" row="88"/>
+			<key interpolation="2" value="0.80000007" row="112"/>
+			<key interpolation="0" value="0.89999998" row="232"/>
 		</track>
 		<track name="logo:pentaRadius">
-			<key interpolation="0" value="1.5000008" row="0"/>
+			<key interpolation="1" value="6.1094761e-07" row="0"/>
+			<key interpolation="0" value="10" row="32"/>
+			<key interpolation="3" value="10" row="96"/>
+			<key interpolation="2" value="8" row="136"/>
+			<key interpolation="3" value="10.000004" row="192"/>
+			<key interpolation="0" value="12" row="232"/>
 		</track>
 		<track name="logo:pentaScale">
-			<key interpolation="0" value="162.99998" row="0"/>
+			<key interpolation="2" value="0" row="0"/>
+			<key interpolation="0" value="24" row="96"/>
 		</track>
 		<track name="logo:pentaIntensity">
-			<key interpolation="0" value="1" row="0"/>
+			<key interpolation="0" value="0" row="0"/>
+			<key interpolation="2" value="0" row="88"/>
+			<key interpolation="3" value="0.5" row="112"/>
+			<key interpolation="2" value="0.75" row="160"/>
+			<key interpolation="1" value="1" row="192"/>
+			<key interpolation="0" value="1" row="232"/>
 		</track>
 		<track name="logo:pentaSharpness">
-			<key interpolation="0" value="0.50000012" row="0"/>
+			<key interpolation="0" value="0.20000005" row="0"/>
+			<key interpolation="2" value="0.2" row="112"/>
+			<key interpolation="0" value="0.34" row="160"/>
 		</track>
 		<track name="logo:pentaScaleStep">
-			<key interpolation="0" value="1" row="0"/>
+			<key interpolation="0" value="0" row="0"/>
+			<key interpolation="2" value="0" row="192"/>
+			<key interpolation="2" value="4" row="232"/>
+			<key interpolation="0" value="4.0999999" row="240"/>
 		</track>
 		<track name="logo:pentaRotation">
-			<key interpolation="0" value="0" row="0"/>
+			<key interpolation="0" value="-17.9" row="0"/>
+			<key interpolation="2" value="-17.9" row="88"/>
+			<key interpolation="2" value="0" row="112"/>
+			<key interpolation="2" value="120" row="160"/>
+			<key interpolation="3" value="180" row="192"/>
+			<key interpolation="0" value="-45" row="240"/>
 		</track>
 		<track name="logo:pentaRotationStep">
-			<key interpolation="0" value="10" row="0"/>
+			<key interpolation="0" value="0" row="0"/>
+			<key interpolation="0" value="0" row="160"/>
+			<key interpolation="3" value="0" row="192"/>
+			<key interpolation="0" value="30.800003" row="240"/>
 		</track>
 		<track name="logo:pentaAmount">
-			<key interpolation="0" value="5" row="0"/>
+			<key interpolation="0" value="4" row="0"/>
 		</track>
 		<track name="logo:nekoScale">
-			<key interpolation="0" value="10.2" row="0"/>
+			<key interpolation="0" value="0" row="0"/>
+			<key interpolation="0" value="10" row="240"/>
 		</track>
 		<track name="logo:nekoY">
-			<key interpolation="0" value="265" row="0"/>
+			<key interpolation="0" value="279" row="0"/>
 		</track>
 		<track name="logo:nekoColor">
 			<key interpolation="0" value="0" row="0"/>
+			<key interpolation="0" value="0" row="240"/>
+		</track>
+		<track name="logo:textY">
+			<key interpolation="0" value="157.69998" row="0"/>
+		</track>
+		<track name="logo:textColor">
+			<key interpolation="0" value="0" row="0"/>
+		</track>
+		<track name="logo:textSize">
+			<key interpolation="0" value="0" row="0"/>
+			<key interpolation="0" value="32" row="243"/>
 		</track>
 	</tracks>
 	<bookmarks/>
