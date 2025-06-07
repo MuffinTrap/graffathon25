@@ -14,7 +14,7 @@ Immediate draw star borders
 
 background change from light gray to black
 
-pixel cat face apper in middle of stars with funny noise
+pixel cat face apper in middle of stars with funny noise Toy Piano?
 
 text FCCCF appear with a bright bell jingle/chord
 

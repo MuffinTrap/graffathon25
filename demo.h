@@ -15,17 +15,18 @@ public:
     void Update();
     void Draw();
 
-    void DrawCube();
 
     Music* thxSound;
-    Mesh* icosaMesh;
-    Scene* icosaScene;
     Font* debugFont;
+
+    Image* nekoLogo;
+    Palette* islandJoyPal;
 
 
     SceneName activeScene;
 
     // Scenes
     void LogoScene();
+    void CubeScene();
 
 };

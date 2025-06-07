@@ -8,9 +8,48 @@
 			<key interpolation="3" value="2" row="62"/>
 			<key interpolation="0" value="10" row="87"/>
 		</track>
-		<track name="clear_i"/>
+		<track name="clear_i">
+			<key interpolation="0" value="0.60000002" row="0"/>
+		</track>
+		<track name="scene"/>
 		<track name="camera:distance">
 			<key interpolation="1" value="24" row="0"/>
+		</track>
+		<track name="logo:pentaBorder">
+			<key interpolation="0" value="0.19999993" row="0"/>
+		</track>
+		<track name="logo:pentaRadius">
+			<key interpolation="0" value="1.5000008" row="0"/>
+		</track>
+		<track name="logo:pentaScale">
+			<key interpolation="0" value="162.99998" row="0"/>
+		</track>
+		<track name="logo:pentaIntensity">
+			<key interpolation="0" value="1" row="0"/>
+		</track>
+		<track name="logo:pentaSharpness">
+			<key interpolation="0" value="0.50000012" row="0"/>
+		</track>
+		<track name="logo:pentaScaleStep">
+			<key interpolation="0" value="1" row="0"/>
+		</track>
+		<track name="logo:pentaRotation">
+			<key interpolation="0" value="0" row="0"/>
+		</track>
+		<track name="logo:pentaRotationStep">
+			<key interpolation="0" value="10" row="0"/>
+		</track>
+		<track name="logo:pentaAmount">
+			<key interpolation="0" value="5" row="0"/>
+		</track>
+		<track name="logo:nekoScale">
+			<key interpolation="0" value="10.2" row="0"/>
+		</track>
+		<track name="logo:nekoY">
+			<key interpolation="0" value="265" row="0"/>
+		</track>
+		<track name="logo:nekoColor">
+			<key interpolation="0" value="0" row="0"/>
 		</track>
 	</tracks>
 	<bookmarks/>
