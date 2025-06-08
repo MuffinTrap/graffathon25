@@ -5,7 +5,7 @@ enum SceneName
 {
     LOGO = 0,
     CUBEMIST = 1,
-    MENU = 2
+    QUIT = 99
 };
 
 class Demo
@@ -14,6 +14,7 @@ public:
     void Init();
     void Update();
     void Draw();
+    bool WantQuit();
 
 
     Music* thxSound;
@@ -22,6 +23,10 @@ public:
     Image* nekoLogo;
     Palette* islandJoyPal;
 
+    Mesh* cubeMesh;
+
+    float* cubePositions;
+    float* textPositions;
 
     SceneName activeScene;
 

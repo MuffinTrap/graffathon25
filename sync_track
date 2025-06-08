@@ -1,17 +1,20 @@
 <sync rows="1024">
 	<tracks>
-		<track name="cube_scale">
-			<key interpolation="1" value="0.001" row="0"/>
-			<key interpolation="0" value="10" row="87"/>
-		</track>
 		<track name="clear_i">
 			<key interpolation="2" value="1.0000005" row="0"/>
 			<key interpolation="2" value="1" row="56"/>
 			<key interpolation="0" value="0.050000001" row="112"/>
+			<key interpolation="2" value="0" row="248"/>
+			<key interpolation="3" value="1" row="260"/>
+			<key interpolation="3" value="0.20000002" row="271"/>
+			<key interpolation="2" value="1" row="328"/>
 		</track>
-		<track name="scene"/>
-		<track name="camera:distance">
-			<key interpolation="1" value="24" row="0"/>
+		<track name="scene">
+			<key interpolation="0" value="0" row="0"/>
+			<key interpolation="0" value="0" row="248"/>
+			<key interpolation="0" value="1" row="272"/>
+			<key interpolation="0" value="99" row="416"/>
+			<key interpolation="0" value="99" row="440"/>
 		</track>
 		<track name="logo:pentaBorder">
 			<key interpolation="1" value="0" row="0"/>
@@ -27,6 +30,8 @@
 			<key interpolation="2" value="8" row="136"/>
 			<key interpolation="3" value="10.000004" row="192"/>
 			<key interpolation="0" value="12" row="232"/>
+			<key interpolation="3" value="12" row="248"/>
+			<key interpolation="0" value="25" row="256"/>
 		</track>
 		<track name="logo:pentaScale">
 			<key interpolation="2" value="0" row="0"/>
@@ -74,6 +79,8 @@
 		</track>
 		<track name="logo:nekoY">
 			<key interpolation="0" value="279" row="0"/>
+			<key interpolation="3" value="279" row="260"/>
+			<key interpolation="0" value="600" row="264"/>
 		</track>
 		<track name="logo:nekoColor">
 			<key interpolation="0" value="0" row="0"/>
@@ -81,6 +88,7 @@
 		</track>
 		<track name="logo:textY">
 			<key interpolation="0" value="157.69998" row="0"/>
+			<key interpolation="0" value="-100" row="260"/>
 		</track>
 		<track name="logo:textColor">
 			<key interpolation="0" value="0" row="0"/>
@@ -88,6 +96,54 @@
 		<track name="logo:textSize">
 			<key interpolation="0" value="0" row="0"/>
 			<key interpolation="0" value="32" row="243"/>
+		</track>
+		<track name="mist:camera_distance">
+			<key interpolation="2" value="-400" row="248"/>
+			<key interpolation="2" value="-300" row="264"/>
+			<key interpolation="2" value="-211" row="296"/>
+			<key interpolation="2" value="-109" row="324"/>
+			<key interpolation="2" value="-17" row="345"/>
+			<key interpolation="2" value="83" row="376"/>
+			<key interpolation="2" value="84" row="384"/>
+			<key interpolation="0" value="141" row="392"/>
+		</track>
+		<track name="mist:camera_roll">
+			<key interpolation="2" value="0" row="248"/>
+			<key interpolation="0" value="120" row="336"/>
+		</track>
+		<track name="mist:cube_scale">
+			<key interpolation="0" value="0.29999992" row="248"/>
+		</track>
+		<track name="mist:cube_colorLerp">
+			<key interpolation="2" value="0" row="264"/>
+			<key interpolation="0" value="0.49999991" row="328"/>
+		</track>
+		<track name="mist:text_scale">
+			<key interpolation="0" value="0.49999991" row="264"/>
+		</track>
+		<track name="mist:cube_light">
+			<key interpolation="0" value="-1" row="264"/>
+			<key interpolation="0" value="1" row="272"/>
+			<key interpolation="0" value="4" row="280"/>
+			<key interpolation="0" value="6" row="286"/>
+			<key interpolation="0" value="7" row="288"/>
+			<key interpolation="0" value="10" row="292"/>
+			<key interpolation="0" value="17" row="296"/>
+			<key interpolation="0" value="20" row="304"/>
+			<key interpolation="0" value="21" row="312"/>
+			<key interpolation="0" value="22" row="320"/>
+			<key interpolation="0" value="23" row="324"/>
+			<key interpolation="0" value="24" row="328"/>
+			<key interpolation="0" value="25" row="336"/>
+			<key interpolation="0" value="26" row="344"/>
+			<key interpolation="0" value="27" row="348"/>
+			<key interpolation="0" value="29" row="352"/>
+			<key interpolation="0" value="31" row="356"/>
+			<key interpolation="0" value="30" row="360"/>
+			<key interpolation="0" value="32" row="364"/>
+			<key interpolation="0" value="34" row="368"/>
+			<key interpolation="0" value="38" row="376"/>
+			<key interpolation="0" value="36" row="384"/>
 		</track>
 	</tracks>
 	<bookmarks/>

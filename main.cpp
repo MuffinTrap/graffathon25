@@ -28,6 +28,11 @@ void update()
         mgdl_DoProgramExit();
     }
     demo.Update();
+
+    if (demo.WantQuit())
+    {
+        mgdl_DoProgramExit();
+    }
 }
 
 int main()

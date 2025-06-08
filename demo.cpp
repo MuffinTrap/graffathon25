@@ -1,4 +1,5 @@
 #include "demo.h"
+#include "drawBox.h"
 #define MGDL_ROCKET
 
 #ifdef MGDL_ROCKET
@@ -10,8 +11,6 @@
 #else
     static ROCKET_TRACK scene;
     static ROCKET_TRACK clear_i;
-    static ROCKET_TRACK cube_scale;
-    static ROCKET_TRACK camera_distance;
 
 
     static ROCKET_TRACK logo_pentaBorder;
@@ -31,6 +30,16 @@
     static ROCKET_TRACK logo_textY;
     static ROCKET_TRACK logo_textColor;
     static ROCKET_TRACK logo_textSize;
+
+    // Cube mist scene
+    static ROCKET_TRACK mist_camera_distance;
+    static ROCKET_TRACK mist_camera_roll;
+    static ROCKET_TRACK mist_cube_scale;
+    static ROCKET_TRACK mist_cube_colorLerp;
+    static ROCKET_TRACK mist_cube_light;
+
+    static ROCKET_TRACK mist_text_scale;
+
 #endif
 
 #endif
@@ -54,6 +63,17 @@ static u32 islandColors[] = {
     0xf7b69eff, // 14 peach
     0x9b9c82ff //  15 olive
 };
+
+static const int cubeAmount = 40;
+static const int textAmount = 4;
+
+static const char* texts[] = {
+    "Made by\nmuffintrap",
+    "using C++\nand mtek-gdl",
+    "audio made\nwith MiniDexed",
+    "for Graffathon\n2025"
+};
+
 void Demo::Init()
 {
 
@@ -73,8 +93,6 @@ void Demo::Init()
     }
 #ifndef SYNC_PLAYER
     scene = Rocket_AddTrack("scene");
-    cube_scale = Rocket_AddTrack("cube_scale");
-    camera_distance = Rocket_AddTrack("camera:distance");
     clear_i = Rocket_AddTrack("clear_i");
 
     logo_pentaBorder = Rocket_AddTrack("logo:pentaBorder");
@@ -93,9 +111,44 @@ void Demo::Init()
     logo_textY = Rocket_AddTrack("logo:textY");
     logo_textColor = Rocket_AddTrack("logo:textColor");
     logo_textSize = Rocket_AddTrack("logo:textSize");
+
+
+    mist_camera_distance = Rocket_AddTrack("mist:camera_distance");
+    mist_camera_roll = Rocket_AddTrack("mist:camera_roll");
+    mist_cube_scale = Rocket_AddTrack("mist:cube_scale");
+    mist_cube_colorLerp = Rocket_AddTrack("mist:cube_colorLerp");
+    mist_cube_light = Rocket_AddTrack("mist:cube_light");
+
+    mist_text_scale = Rocket_AddTrack("mist:text_scale");
+
 #endif
     Rocket_StartSync();
 #endif
+
+    // Randomize cube positions
+    srand(100);
+    float z = 200.0f;
+    cubePositions = (float*)malloc(sizeof(float) * cubeAmount * 3);
+    float xylimit = 100;
+    for (int i = 0; i  < (cubeAmount-1)*3; i += 3)
+    {
+        cubePositions[i+0] =  gdl::GetRandomFloat(-xylimit, xylimit);
+        cubePositions[i+1] =  gdl::GetRandomFloat(-xylimit, xylimit);
+        cubePositions[i+2] = z;
+        z -= (400.0f/(float)cubeAmount);
+    }
+
+
+    textPositions = (float*)malloc(sizeof(float) * textAmount * 3);
+    z= 200.0f;
+    for (int i = 0; i  < (textAmount)*3; i += 3)
+    {
+        textPositions[i+0] =  gdl::GetRandomFloat(-8, 8);
+        textPositions[i+1] =  gdl::GetRandomFloat(-12, 12);
+        textPositions[i+2] = z;
+        z -= (400.0f/(float)textAmount);
+    }
+
 
     activeScene = LOGO;
 
@@ -129,7 +182,7 @@ void Demo::Draw()
 
             break;
 
-        case MENU:
+        case QUIT:
 
             break;
     }
@@ -140,10 +193,19 @@ void Demo::Draw()
 
 }
 
+static float fogColor[4] = {0,0,0,0};
+
 void Demo::CubeScene()
 {
     mgdl_InitPerspectiveProjection(75.0f, 0.1f, 100.0f);
-    mgdl_InitCamera(V3f_Create(0.0f, 0.0f, Rocket_Float(camera_distance)), V3f_Create(0.0f, 0.0f, 0.0f), V3f_Create(0.0f, 1.0f, 0.0f));
+    mgdl_InitCamera(V3f_Create(0.0f, 0.0f, 1.0f),
+                    V3f_Create(0.0f, 0.0f, 0.0f),
+                    V3f_Create(0.0f, 1.0f, 0.0f));
+
+    float bgInt= Rocket_Float(clear_i);
+    Color4f clearCol = Palette_GetColor4f(islandJoyPal, 4 );
+    glClearColor(clearCol.red * bgInt, clearCol.green * bgInt, clearCol.blue * bgInt, 1.0f);
+    mgdl_glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
 
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LEQUAL);
@@ -151,31 +213,82 @@ void Demo::CubeScene()
 
 	// This is the other way around on Wii, but
 	// hopefully OpenGX handles it
+    /*
     glEnable(GL_CULL_FACE);
     glCullFace(GL_BACK);
+    */
     glShadeModel(GL_FLAT);
 
-    glColor3f(1.0f, 1.0f, 1.0f);
+    fogColor[0] = clearCol.red;
+    fogColor[1] = clearCol.green;
+    fogColor[2] = clearCol.blue;
+    fogColor[3] = clearCol.alpha;
 
-    glPushMatrix();
 
-    glTranslatef(0.0f, 0.0f, 0.0f);
-    float cs = Rocket_Float(cube_scale);
-    glScalef(cs, cs, cs);
-    //glutSolidCube(10.0);
-    //Mesh_DrawElements(icosaMesh);
-    //Mesh_DrawLines(icosaMesh);
-    /*
-    float elp = mgdl_GetElapsedSeconds();
-    glRotatef(elp * sceneRotation.x * 10.0f, 1.0f, 0.0f, 0.0f);
-    glRotatef(elp * sceneRotation.y * 10.0f, 0.0f, 1.0f, 0.0f);
-    glRotatef(elp * sceneRotation.z * 10.0f, 0.0f, 0.0f, 1.0f);
-    glScalef(scale.x, scale.y, scale.z);
+    Color4f cubecol = Palette_GetColor4f(islandJoyPal, 4 );
+    Color4f cubecol2 = Palette_GetColor4f(islandJoyPal, 2 );
 
-    Scene_Draw(scene);
-    */
+    glPushMatrix(); // Camera roll
 
-    glPopMatrix();
+    // float elp = mgdl_GetElapsedSeconds();
+    //glRotatef(elp * sceneRotation.x * 10.0f, 1.0f, 0.0f, 0.0f);
+    // glRotatef(elp * sceneRotation.y * 10.0f, 0.0f, 1.0f, 0.0f);
+    glRotatef(Rocket_Float(mist_camera_roll), 0.0f, 0.0f, 1.0f);
+    int lightCube = Rocket_Int(mist_cube_light);
+
+    float cs = Rocket_Float(mist_cube_scale);
+    for (int i = 0; i < cubeAmount-1; i++)
+    {
+    glPushMatrix(); // Cubes
+        glScalef(cs, cs, cs);
+        float x  = cubePositions[i * 3 + 0];
+        float y  = cubePositions[i * 3 + 1];
+        float z  = cubePositions[i * 3 + 2];
+        z += Rocket_Float(mist_camera_distance);
+        glTranslatef(x, y, z);
+        glRotatef(x, 1.0f, 0.0f, 0.0f);
+        glRotatef(y, 0.0f, 1.0f, 0.0f);
+        glRotatef(z, 0.0f, 0.0f, 1.0f);
+
+        if (i == lightCube)
+        {
+            glColor3f(1.0f, 1.0f, 1.0f);
+        }
+        else
+        {
+
+        float lerp = Rocket_Float(mist_cube_colorLerp);
+        float mlerp = (1.0f - lerp);
+        glColor3f(mlerp * cubecol.red + lerp *cubecol2.red,
+                mlerp * cubecol.green + lerp *cubecol2.green,
+                mlerp * cubecol.blue + lerp *cubecol2.green);
+        }
+
+        SolidCube(10.0f);
+
+        glPopMatrix(); // Cubes
+    }
+
+    glPopMatrix(); // Camera roll
+
+    u32 yellow = Palette_GetColor(islandJoyPal, 8);
+    float ts = Rocket_Float(mist_text_scale);
+
+    for (int i = 0; i < textAmount; i++)
+    {
+        glPushMatrix(); // texts
+        glScalef(ts, ts, ts);
+        float x  = textPositions[i * 3 + 0];
+        float y  = textPositions[i * 3 + 1];
+        float z  = textPositions[i * 3 + 2];
+        z += Rocket_Float(mist_camera_distance);
+        glTranslatef(x, y, z);
+
+        Font_PrintOrigo(debugFont, yellow, 1.0f, Centered, Centered, texts[i]);
+
+        glPopMatrix(); // texts
+    }
+
     glDisable(GL_DEPTH_TEST);
 }
 
@@ -240,7 +353,13 @@ void Demo::LogoScene()
                       mgdl_GetScreenWidth()/2,
                       Rocket_Int(logo_textY),
                       Rocket_Int(logo_textSize),
-                      Centered, Centered, "FCCCF");
+                      Centered, Centered, "STATION");
 }
+
+bool Demo::WantQuit()
+{
+    return activeScene == QUIT;
+}
+
 
 
