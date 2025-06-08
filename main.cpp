@@ -37,7 +37,7 @@ void update()
 
 int main()
 {
-    u32 flags = 0;//gdl::PlatformInitFlag::FlagSplashScreen;
+    u32 flags = gdl::PlatformInitFlag::FlagFullScreen;
     mgdl_InitSystem(MGDL_PLATFORM,
         gdl::ScreenAspect::Screen4x3,
         init,
